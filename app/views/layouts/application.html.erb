@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EsasS12021Assign2</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<div class="ui top fixed menu">
+  <div class="item">
+    <h3><%=link_to 'Rotten Potatoes', movies_path %></h3>
+  </div>
+</div>
+<div class="ui container main">
+  <%= yield %>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<h1 class="ui header">
+  Movies
+  <%= link_to new_movie_path, class: "ui primary right floated button" do %>
+    <i class="add icon"></i> New Movie
+  <% end %>
+</h1>
+
+<%= semantic_flash %>
+
+<%= form_tag movies_path, method: :get do %>
+  <div class="ui form">
+    <div class="inline fields">
+      <label>Include:</label>
+      <% @all_ratings.each do |rating| %>
+        <div class="field">
+          <div class="ui checkbox">
+            <%= check_box_tag "ratings[#{rating}]", true, @ratings.include?(rating) %>
+            <label><%= rating %></label>
+          </div>
+        </div>
+      <% end %>
+      <%= submit_tag 'Refresh', class: "ui tiny green button" %>
+    </div>
+  </div>
+<% end %>
+
+<table class="ui table">
+  <thead>
+  <tr>
+    <th>
+      <%= link_to movies_path(sort: "title") do %>
+        Title
+        <% if @sort == "title" %>
+          <i class="chevron up icon"></i>
+        <% end %>
+      <% end %>
+    </th>
+    <th>Rating</th>
+    <th>Description</th>
+    <th>
+      <%= link_to movies_path(sort: "release_date") do %>
+        Release Date
+        <% if @sort == "release_date" %>
+          <i class="chevron up icon"></i>
+        <% end %>
+      <% end %>
+    </th>
+    <th class="right aligned"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td><%= movie.title %></td>
+      <td><%= movie.rating %></td>
+      <td><%= movie.description %></td>
+      <td><%= movie.release_date %></td>
+      <td class="right aligned">
+        <div class="ui small basic buttons">
+          <%= link_to movie, class: "ui button" do %>
+            <i class="eye icon"></i> Show
+          <% end %>
+          <%= link_to edit_movie_path(movie), class: "ui button" do %>
+            <i class="edit icon"></i> Edit
+          <% end %>
+          <%= link_to movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "ui button" do %>
+            <i class="remove icon"></i> Destroy
+          <% end %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
