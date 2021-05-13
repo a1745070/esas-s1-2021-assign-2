@@ -13,6 +13,7 @@
       <label>Include:</label>
       <% @all_ratings.each do |rating| %>
         <div class="field">
+          
           <div class="ui checkbox">
             <%= check_box_tag "ratings[#{rating}]", true, @ratings.include?(rating) %>
             <label><%= rating %></label>
@@ -35,6 +36,7 @@
         <% end %>
       <% end %>
     </th>
+    <th>Director</th>
     <th>Rating</th>
     <th>Description</th>
     <th>
@@ -53,6 +55,7 @@
   <% @movies.each do |movie| %>
     <tr>
       <td><%= movie.title %></td>
+      <td><%= movie.director %></td>
       <td><%= movie.rating %></td>
       <td><%= movie.description %></td>
       <td><%= movie.release_date %></td>
