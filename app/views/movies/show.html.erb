@@ -52,8 +52,8 @@
  <% end %>
 
  <div class="ui basic buttons">
-      <%= link_to movies_path, class: "ui button" do %>
-     <i class="chevron left icon"></i> 
+      <%=link_to find_similar_movies((id: @movie.director), class: "ui button" do %>
+     <i class="find_similar_movies"></i> 
      Find Similar Movies
  <% end %>
   
