@@ -76,6 +76,11 @@ class MoviesController < ApplicationController
     @director= Movie.find_movie_by_director(@movie.director)
     end
 
+    def find_similar_movies
+      @movie = Movie.find(params[:id])
+      @movies= Movie.find_similar_movies(@movie.movies)
+      end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
