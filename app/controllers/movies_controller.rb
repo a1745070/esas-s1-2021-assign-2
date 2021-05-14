@@ -69,26 +69,12 @@ class MoviesController < ApplicationController
       format.json { head :no_content }
     end
   end
-  def search_movie_by_director
-    @movie = Movie.find(params[:id])
-    @movies = Movie.search_movie_by_director(@movie.director)
-    if @movies.nil?
-      flash[:notice] = "\'#{@movie.title}\' has no director info"
-      redirect_to movies_path
-    end 
-  end  
+  
 
-  def similar
-    @id = params[:movie_id]
-    @movie = Movie.find(@id)
-    @director = @movie.director
-    if not @director.blank?
-      @movies = Movie.similar_directors(@director)
-    else
-      flash[:notice] = "'#{@movie.title}' has no director info"
-      redirect_to movies_path
+  def find_movie_by_director
+    @movie = Movie.find(params[:id])
+    @director= Movie.find_movie_by_director(@movie.director)
     end
-  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -99,7 +85,7 @@ class MoviesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def movie_params
       params.require(:movie).permit(:title, :rating, :description, :release_date)
-      params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
+      
     
     end
 end

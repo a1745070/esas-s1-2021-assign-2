@@ -13,14 +13,18 @@
         </div>
         <%= @movie.rating %>
       </div>
+   
       <div class="item"><li>
-  Director:
+          <div class="header"> Director
+          </div>
+        </li>
   <%= @movie.director %>
 </li>
-
+  
         <div class="header">
           Description
-        </div>
+      
+      </div>
         <%= @movie.description %>
       </div>
 
@@ -41,4 +45,16 @@
   <%= link_to edit_movie_path(@movie), class: "ui button" do %>
     <i class="edit"></i> Edit
   <% end %>
+<!-- 
+  <div class="ui basic buttons">
+      <%= link_to find_movie_by_director(id: @movie.director), class: "ui button" do %>
+     <i class="find_movie_by_director"></i>Find Movies with the Same Director
+ <% end %>
+ -->
+ <div class="ui basic buttons">
+      <%= link_to movies_path, class: "ui button" do %>
+     <i class="chevron left icon"></i> 
+     Find Similar Movies
+ <% end %>
+  
 </div>
